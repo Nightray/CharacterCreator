@@ -14,6 +14,11 @@
             <ColumnDefinition Width="200"/>
         </Grid.ColumnDefinitions>
         <ListView x:Name="lvCharacters" Margin="5" ItemsSource="{Binding CharacterList}">
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                </Style>
+            </ListView.ItemContainerStyle>
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Name"
@@ -48,7 +53,13 @@
         <StackPanel Grid.Column="1" Margin="0, 5, 5, 5"> <!-- ListView on the left adds margin from the left -->
             <StackPanel Margin="0, 0, 0, 15">
                 <Label Content="Character Name:" FontSize="16" />
-                <TextBox x:Name="txtbCharacterName" FontSize="14" />
+                <TextBox x:Name="txtCharacterName" FontSize="14" LostFocus="txtCharacterName_LostFocus" GotFocus="txtCharacterName_GotFocus" />
+                <Label x:Name="lbEmptyCharacterName"
+                       Content="Field cannot be empty!"
+                       FontSize="10"
+                       FontStyle="Italic"
+                       Foreground="Red"
+                       Visibility="Collapsed" />
             </StackPanel>
             <StackPanel Margin="0, 0, 0, 5">
                 <StackPanel Orientation="Horizontal">
@@ -80,8 +91,7 @@
                 <ComboBox x:Name="cmbRaces" />
             </StackPanel>
             <StackPanel Margin="0, 0, 0, 5">
-                <Label Content="Profession:"
-                       FontSize="16" />
+                <Label Content="Profession:" FontSize="16" />
                 <ComboBox x:Name="cmbProfessions" />
             </StackPanel>
             <StackPanel>

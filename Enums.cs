@@ -9,7 +9,7 @@ namespace CharacterCreator
     public class Enums
     {
         public enum CharacterSex { Male, Female }
-        public enum Races { Human, Orc, NightElf, BloodElf, Dwarf }
-        public enum Professions { Wizard, Paladin, Mage, Hunter }
+        public enum Races { Human, Orc, Troll, Elf, Gnome, Dwarf, Undead }
+        public enum Professions { Wizard, Paladin, Mage, Hunter, Thief, Warrior, Necromancer, Druid, Shaman }
     }
 }
