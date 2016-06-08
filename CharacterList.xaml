@@ -11,7 +11,7 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="200"/>
         </Grid.ColumnDefinitions>
-        <ListView x:Name="lvCharacters" Margin="5" ItemsSource="{Binding BindingGroup.Items, ElementName=userControl}">
+        <ListView x:Name="lvCharacters" Margin="5">
             <ListView.ItemContainerStyle>
                 <Style TargetType="ListViewItem">
                     <Setter Property="HorizontalContentAlignment" Value="Stretch" />

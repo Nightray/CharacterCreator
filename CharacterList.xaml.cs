@@ -26,6 +26,7 @@ namespace CharacterCreator
 
         public CharacterList()
         {
+            ListOfCharacters = app.Global.ListOfCharacters;
             InitializeComponent();
             DataContext = this;
 
@@ -33,7 +34,7 @@ namespace CharacterCreator
             this.cmbRaces.ItemsSource = Enum.GetValues(typeof(Enums.Races)).Cast<Enums.Races>();
             this.cmbProfessions.ItemsSource = Enum.GetValues(typeof(Enums.Professions)).Cast<Enums.Professions>();
 
-            ListOfCharacters = app.Global.ListOfCharacters;
+            this.lvCharacters.ItemsSource = ListOfCharacters;
 
             ClearForm();
         }
