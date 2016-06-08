@@ -1,19 +1,17 @@
-﻿<Window x:Class="CharacterCreator.MainWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:CharacterCreator"
-        mc:Ignorable="d"
-        
-        Title="Character Creator" Height="600" Width="850" 
-        ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+﻿<UserControl x:Class="CharacterCreator.CharacterList"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:CharacterCreator"
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="850">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="200"/>
         </Grid.ColumnDefinitions>
-        <ListView x:Name="lvCharacters" Margin="5" ItemsSource="{Binding CharacterList}">
+        <ListView x:Name="lvCharacters" Margin="5" ItemsSource="{Binding ListOfCharacters}">
             <ListView.ItemContainerStyle>
                 <Style TargetType="ListViewItem">
                     <Setter Property="HorizontalContentAlignment" Value="Stretch" />
@@ -50,7 +48,8 @@
             </ListView.View>
         </ListView>
         <!-- START Right Column -->
-        <StackPanel Grid.Column="1" Margin="0, 5, 5, 5"> <!-- ListView on the left adds margin from the left -->
+        <StackPanel Grid.Column="1" Margin="0, 5, 5, 5">
+            <!-- ListView on the left adds margin from the left -->
             <StackPanel Margin="0, 0, 0, 15">
                 <Label Content="Character Name:" FontSize="16" />
                 <TextBox x:Name="txtCharacterName" FontSize="14" LostFocus="txtCharacterName_LostFocus" GotFocus="txtCharacterName_GotFocus" />
@@ -101,7 +100,8 @@
                         Click="btnAdd_Click" />
             </StackPanel>
         </StackPanel>
-        
+
         <!-- END Right Column -->
     </Grid>
-</Window>
+
+</UserControl>

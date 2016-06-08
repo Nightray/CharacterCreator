@@ -17,16 +17,16 @@ using System.Windows.Shapes;
 namespace CharacterCreator
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for CharacterList.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class CharacterList : UserControl, ISwitchable
     {
-        public ObservableCollection<Character> CharacterList { get; set; }
+        public ObservableCollection<Character> ListOfCharacters { get; set; }
 
-        public MainWindow()
+        public CharacterList()
         {
             InitializeComponent();
-            CharacterList = new ObservableCollection<Character>();
+            ListOfCharacters = new ObservableCollection<Character>();
             DataContext = this;
 
             this.cmbSex.ItemsSource = Enum.GetValues(typeof(Enums.CharacterSex)).Cast<Enums.CharacterSex>();
@@ -35,6 +35,7 @@ namespace CharacterCreator
 
             ClearForm();
         }
+
         #region btnAdd and btnRemove
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
@@ -49,7 +50,7 @@ namespace CharacterCreator
             else
             {
                 Character character = new Character(name, level, sex, race, profession);
-                CharacterList.Add(character);
+                ListOfCharacters.Add(character);
                 ClearForm();
             }
         }
@@ -59,7 +60,7 @@ namespace CharacterCreator
             var item = (sender as FrameworkElement).DataContext;
             int index = lvCharacters.Items.IndexOf(item);
 
-            this.CharacterList.RemoveAt(index);
+            this.ListOfCharacters.RemoveAt(index);
         }
         #endregion
 
@@ -97,6 +98,11 @@ namespace CharacterCreator
             this.cmbSex.SelectedIndex = 0;
             this.cmbRaces.SelectedIndex = 0;
             this.cmbProfessions.SelectedIndex = 0;
+        }
+
+        public void UtilizeState(object state)
+        {
+            throw new NotImplementedException();
         }
     }
 }

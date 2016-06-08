@@ -55,7 +55,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="MainWindow.xaml">
+    <Compile Include="CharacterList.xaml.cs">
+      <DependentUpon>CharacterList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Switcher.cs" />
+    <Page Include="CharacterList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PageSwitcher.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -65,8 +73,9 @@
     </Compile>
     <Compile Include="Character.cs" />
     <Compile Include="Enums.cs" />
-    <Compile Include="MainWindow.xaml.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
+    <Compile Include="ISwitchable.cs" />
+    <Compile Include="PageSwitcher.xaml.cs">
+      <DependentUpon>PageSwitcher.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
