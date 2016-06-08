@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Configuration;
 using System.Data;
 using System.Linq;
@@ -13,5 +14,13 @@ namespace CharacterCreator
     /// </summary>
     public partial class App : Application
     {
+        public Globals Global;
+        public App()
+        {
+            this.InitializeComponent();
+
+            Global = new Globals();
+            Global.ListOfCharacters = new ObservableCollection<Character>();
+        }
     }
 }

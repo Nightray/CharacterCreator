@@ -21,17 +21,19 @@ namespace CharacterCreator
     /// </summary>
     public partial class CharacterList : UserControl, ISwitchable
     {
-        public ObservableCollection<Character> ListOfCharacters { get; set; }
+        App app = Application.Current as App;
+        ObservableCollection<Character> ListOfCharacters;
 
         public CharacterList()
         {
             InitializeComponent();
-            ListOfCharacters = new ObservableCollection<Character>();
             DataContext = this;
 
             this.cmbSex.ItemsSource = Enum.GetValues(typeof(Enums.CharacterSex)).Cast<Enums.CharacterSex>();
             this.cmbRaces.ItemsSource = Enum.GetValues(typeof(Enums.Races)).Cast<Enums.Races>();
             this.cmbProfessions.ItemsSource = Enum.GetValues(typeof(Enums.Professions)).Cast<Enums.Professions>();
+
+            ListOfCharacters = app.Global.ListOfCharacters;
 
             ClearForm();
         }
@@ -60,7 +62,7 @@ namespace CharacterCreator
             var item = (sender as FrameworkElement).DataContext;
             int index = lvCharacters.Items.IndexOf(item);
 
-            this.ListOfCharacters.RemoveAt(index);
+            ListOfCharacters.RemoveAt(index);
         }
         #endregion
 

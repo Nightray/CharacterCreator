@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="CharacterCreator.CharacterList"
+﻿<UserControl x:Name="userControl" x:Class="CharacterCreator.CharacterList"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -11,7 +11,7 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="200"/>
         </Grid.ColumnDefinitions>
-        <ListView x:Name="lvCharacters" Margin="5" ItemsSource="{Binding ListOfCharacters}">
+        <ListView x:Name="lvCharacters" Margin="5" ItemsSource="{Binding BindingGroup.Items, ElementName=userControl}">
             <ListView.ItemContainerStyle>
                 <Style TargetType="ListViewItem">
                     <Setter Property="HorizontalContentAlignment" Value="Stretch" />
