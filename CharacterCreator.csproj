@@ -55,12 +55,20 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="CharacterList.xaml.cs">
+    <Compile Include="Interfaces\IViewableCharacter.cs" />
+    <Compile Include="Views\Inventory.xaml.cs">
+      <DependentUpon>Inventory.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CharacterList.xaml.cs">
       <DependentUpon>CharacterList.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Globals.cs" />
-    <Compile Include="Switcher.cs" />
-    <Page Include="CharacterList.xaml">
+    <Compile Include="Helpers\Globals.cs" />
+    <Compile Include="Helpers\Switcher.cs" />
+    <Page Include="Views\Inventory.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\CharacterList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -72,9 +80,9 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Character.cs" />
+    <Compile Include="Classes\Character.cs" />
     <Compile Include="Enums.cs" />
-    <Compile Include="ISwitchable.cs" />
+    <Compile Include="Interfaces\ISwitchable.cs" />
     <Compile Include="PageSwitcher.xaml.cs">
       <DependentUpon>PageSwitcher.xaml</DependentUpon>
       <SubType>Code</SubType>

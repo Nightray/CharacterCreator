@@ -6,6 +6,6 @@
         xmlns:local="clr-namespace:CharacterCreator"
         mc:Ignorable="d"
         
-        Title="Character Creator" Height="600" Width="850" 
+        Title="Character Creator" Height="600" Width="950" 
         ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
 </Window>

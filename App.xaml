@@ -4,6 +4,10 @@
              xmlns:local="clr-namespace:CharacterCreator"
              StartupUri="PageSwitcher.xaml">
     <Application.Resources>
-         
+
+        <ResourceDictionary>
+            
+        </ResourceDictionary>
+
     </Application.Resources>
 </Application>
