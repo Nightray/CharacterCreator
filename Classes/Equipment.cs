@@ -9,7 +9,7 @@ namespace CharacterCreator.Classes
     public class Equipment
     {
         public string Type { get; set; }
-        public double Quanity { get; set; }
+        public int Quanity { get; set; }
 
         public Equipment() { }
         public Equipment(string type) { this.Type = type; }

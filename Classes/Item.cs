@@ -13,7 +13,7 @@ namespace CharacterCreator.Classes
 
         public Item() { }
 
-        public Item(string name, string type, double quanity)
+        public Item(string name, string type, int quanity)
         {
             this.Name = name;
             this.Type = type;

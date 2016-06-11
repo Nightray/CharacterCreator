@@ -16,7 +16,7 @@ namespace CharacterCreator.Classes
 
         public Armor() { }
 
-        public Armor(string name, string type, double quanity)
+        public Armor(string name, string type, int quanity)
         {
             this.Name = name;
             this.Type = type;

@@ -16,7 +16,7 @@ namespace CharacterCreator.Classes
 
         public Weapon() { }
 
-        public Weapon(string name, string type, double quanity)
+        public Weapon(string name, string type, int quanity)
         {
             this.Name = name;
             this.Type = type;

@@ -33,7 +33,7 @@
                             <DataTemplate>
                                 <Button Content="Delete"
                                         Padding="8,0"
-                                       
+                                        Click="btnRemove_Click"
                                         HorizontalAlignment="Center" />
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
@@ -87,7 +87,7 @@
             <StackPanel>
                 <Button x:Name="btnSave"
                         Content="Save"
-                        Margin="0, 150, 0, 0"
+                        Margin="0, 150, 0, 0" Click="btnSave_Click"
                          />
                 <Button x:Name="btnCancel"
                         Content="Cancel"

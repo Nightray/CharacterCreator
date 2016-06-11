@@ -44,7 +44,7 @@ namespace CharacterCreator.Views
 
             this.TempListOfItems = new ObservableCollection<Classes.Equipment>();
             this.ListOfItems = CurrentCharacter.ListOfItems;
-            //this.TempListOfItems = ListOfItems;
+            this.TempListOfItems = ListOfItems;
             this.lvItems.ItemsSource = TempListOfItems;
 
             DisplayGreeting();
@@ -124,7 +124,7 @@ namespace CharacterCreator.Views
         {
             string name = this.cmbItemName.Text;
             string type = this.cmbItemType.Text;
-            double quanity = this.slItemQuanity.Value;
+            int quanity = (int)this.slItemQuanity.Value;
 
             switch (type)
             {
@@ -143,6 +143,22 @@ namespace CharacterCreator.Views
                 default:
                     break;
             }
+            PrepareForm();
+        }
+
+        private void btnRemove_Click(object sender, RoutedEventArgs e)
+        {
+            var item = (sender as FrameworkElement).DataContext;
+            int index = lvItems.Items.IndexOf(item);
+
+            TempListOfItems.RemoveAt(index);
+        }
+
+        private void btnSave_Click(object sender, RoutedEventArgs e)
+        {
+            this.ListOfItems = TempListOfItems;
+            TempListOfItems.Clear();
+            Switcher.Switch(new CharacterList());
         }
     }
 }

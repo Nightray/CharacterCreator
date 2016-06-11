@@ -28,6 +28,7 @@ namespace CharacterCreator
             this.SexFirstLetter = sex.ToString()[0];
             this.Race = race;
             this.Profession = profession;
+            this.ListOfItems = new ObservableCollection<Classes.Equipment>();
         }
     }
 }
