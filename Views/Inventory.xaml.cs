@@ -40,7 +40,6 @@ namespace CharacterCreator.Views
             ViewableCharacter(indexNumber);
 
             this.ListOfItems = new ObservableCollection<Classes.Equipment>(CurrentCharacter.ListOfItems);
-
             this.lvItems.ItemsSource = ListOfItems;
 
             DisplayGreeting();
@@ -150,7 +149,6 @@ namespace CharacterCreator.Views
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
             CurrentCharacter.ListOfItems = ListOfItems;
-            ListOfItems.Clear();
             Switcher.Switch(new CharacterList());
         }
 
