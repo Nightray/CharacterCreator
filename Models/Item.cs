@@ -1,6 +1,6 @@
 ﻿namespace CharacterCreator.Classes
 {
-    class Item: Equipment
+    public class Item: Equipment
     {
         public Item() { }
 

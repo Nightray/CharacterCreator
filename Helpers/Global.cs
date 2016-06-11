@@ -9,8 +9,8 @@ namespace CharacterCreator
 
         #region All the stuff used by Invenotry.cs such as: Item Types, Items, Weapons, and Armor
         public List<string> ItemTypes = new List<string> { "Items", "Weapons", "Armor" };
-        public List<string> Items = new List<string> { "Arrow", "Bolt", "Potion",
-            "Book", "Antidote", "Meat", "Water", "Bag" };
+        public List<string> Items = new List<string> { "Health Potion", "Mana Potion",
+            "Spell Book", "Antidote" };
         public Dictionary<string, int> Weapons = new Dictionary<string, int> {
             { "Sword", 120 },
             { "Longsword", 145 },

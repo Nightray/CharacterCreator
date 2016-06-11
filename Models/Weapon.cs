@@ -2,26 +2,26 @@
 
 namespace CharacterCreator.Classes
 {
-    class Armor: Equipment
+    public class Weapon: Equipment
     {
         // An access point to Global.cs
         App app = Application.Current as App;
 
-        public int HealthPoints { get; set; }
+        public int Damage { get; set; }
 
-        public Armor() { }
+        public Weapon() { }
 
-        public Armor(string name, string type, int quanity)
+        public Weapon(string name, string type, int quanity)
         {
             this.Name = name;
             this.Type = type;
             this.Quanity = quanity;
-            this.HealthPoints = app.Global.Armor[name];
+            this.Damage = app.Global.Weapons[name];
         }
 
         public override string ItemDetails()
         {
-            return "Health Points: " + this.HealthPoints;
+            return "Damage: " + this.Damage;
         }
     }
 }

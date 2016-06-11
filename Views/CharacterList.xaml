@@ -42,7 +42,7 @@
                                             Padding="8,0"
                                             Click="btnInventory_Click"
                                             HorizontalAlignment="Center"
-                                            Margin="0 0 15 0" />
+                                            Margin="0 0 5 0" />
                                     <Button Content="Delete"
                                             Padding="8,0"
                                             Click="btnRemove_Click"

@@ -32,7 +32,7 @@ namespace CharacterCreator
             PrepareForm();
         }
 
-        #region Buttons
+        #region Buttons and Button related functions
         /// <summary>
         /// Takes values form the form, perfoms all necesary checks,
         /// if validation pases, adds the character to the list and clears the form 
@@ -85,7 +85,7 @@ namespace CharacterCreator
                 Microsoft.Win32.SaveFileDialog dlg = new Microsoft.Win32.SaveFileDialog();
                 dlg.FileName = "CharacterCreator - " + DateTime.Now.ToString("ddMMyyhhmmss");
                 dlg.DefaultExt = ".xml";
-                dlg.Filter = "XML Documents (.xml)|*.xml";
+                dlg.Filter = "XML documents (.xml)|*.xml";
 
                 Nullable<bool> result = dlg.ShowDialog();
 
@@ -108,11 +108,42 @@ namespace CharacterCreator
 
         private void btnLoad_Click(object sender, RoutedEventArgs e)
         {
+            Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
+            dlg.DefaultExt = ".xml";
+            dlg.Filter = "XML document (.xml)|*.xml";
 
+            Nullable<bool> result = dlg.ShowDialog();
+            string filepath = "";
+            if (result == true)
+            {
+                filepath = dlg.FileName;
+            }
+            if (File.Exists(filepath))
+            {
+                XmlFileToList(filepath);
+            }
+            else
+            {
+                MessageBox.Show("This is not the file you are looking for.");
+            }
+        }
+
+        private void XmlFileToList(string filename)
+        {
+            using (var sr = new StreamReader(filename))
+            {
+                var deserializer = new XmlSerializer(typeof(ObservableCollection<Character>));
+                ObservableCollection<Character> tmpList = (ObservableCollection<Character>)deserializer.Deserialize(sr);
+
+                foreach (var item in tmpList)
+                {
+                    this.ListOfCharacters.Add(item);
+                }
+            }
         }
         #endregion
 
-        #region txtCharacterName functions
+        #region txtCharacterName and related functions
 
         private void txtCharacterName_GotFocus(object sender, RoutedEventArgs e)
         {

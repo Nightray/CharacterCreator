@@ -55,10 +55,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Classes\Armor.cs" />
-    <Compile Include="Classes\Item.cs" />
-    <Compile Include="Classes\Equipment.cs" />
-    <Compile Include="Classes\Weapon.cs" />
+    <Compile Include="Models\Armor.cs" />
+    <Compile Include="Models\Item.cs" />
+    <Compile Include="Models\Equipment.cs" />
+    <Compile Include="Models\Weapon.cs" />
     <Compile Include="Interfaces\IViewableCharacter.cs" />
     <Compile Include="Views\Inventory.xaml.cs">
       <DependentUpon>Inventory.xaml</DependentUpon>
@@ -84,7 +84,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Classes\Character.cs" />
+    <Compile Include="Models\Character.cs" />
     <Compile Include="Enums.cs" />
     <Compile Include="Interfaces\ISwitchable.cs" />
     <Compile Include="PageSwitcher.xaml.cs">

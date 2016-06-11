@@ -1,7 +1,13 @@
-﻿using System.Collections.ObjectModel;
+﻿using CharacterCreator.Classes;
+using System.Collections.ObjectModel;
+using System.Xml.Serialization;
 
 namespace CharacterCreator
 {
+    [XmlInclude(typeof(Equipment))]
+    [XmlInclude(typeof(Armor))]
+    [XmlInclude(typeof(Item))]
+    [XmlInclude(typeof(Weapon))]
     public class Character
     {
         public string Name { get; set; }
