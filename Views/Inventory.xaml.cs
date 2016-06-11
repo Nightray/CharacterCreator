@@ -26,16 +26,27 @@ namespace CharacterCreator.Views
         App app = Application.Current as App;
         ObservableCollection<Character> ListOfCharacters;
 
+        ObservableCollection<Classes.Items> ListOfItems;
+        public ObservableCollection<Classes.Items> TempListOfItems { get; set; }
+
         private Character CurrentCharacter { get; set; }
 
         public Inventory(int indexNumber)
         {
-            ListOfCharacters = app.Global.ListOfCharacters; // The list of characters exists in the global scope.
+            ListOfCharacters = app.Global.ListOfCharacters;
             InitializeComponent();
 
             ViewableCharacter(indexNumber);
 
+            this.cmbItemType.ItemsSource = app.Global.ItemTypes;
+            this.cmbItemType.SelectedIndex = 0;
+
+            this.ListOfItems = CurrentCharacter.ListOfItems;
+            this.TempListOfItems = ListOfItems;
+            this.lvItems.ItemsSource = TempListOfItems;
+
             DisplayGreeting();
+            ClearForm();
         }
 
         private void btnCancel_Click(object sender, RoutedEventArgs e)
@@ -45,11 +56,17 @@ namespace CharacterCreator.Views
 
         private void DisplayGreeting()
         {
-            string Name = CurrentCharacter.Name;
-            Name = Name.Substring(Name.Length - 1);
+            if (!ListOfCharacters.Contains(CurrentCharacter))
+            {
+                lblGreeting.Content = "Error!";
+            }
+            else {
+                string Name = CurrentCharacter.Name;
+                Name = Name.Substring(Name.Length - 1);
 
-            string sGenetive = (Name == "s") ? "' " : "'s ";
-            this.lblGreeting.Content = CurrentCharacter.Name + sGenetive + "Inventory";
+                string sGenetive = (Name == "s") ? "' " : "'s ";
+                lblGreeting.Content = CurrentCharacter.Name + sGenetive + "Inventory";
+            }
         }
 
         public void ViewableCharacter(int characterIndex)
@@ -65,6 +82,39 @@ namespace CharacterCreator.Views
                 {
                     MessageBox.Show("The character you are trying to view doesn't exists anymore!", "Error!");
                 }
+            }
+        }
+        
+        /// <summary>
+        /// Clears the form and brings back the default values.
+        /// </summary>
+        private void ClearForm()
+        {
+            this.cmbItemName.ItemsSource = app.Global.Items;
+
+            this.cmbItemType.SelectedIndex = 0;
+            this.cmbItemName.SelectedIndex = 0;
+            this.slItemQuanity.Value = 1;
+        }
+
+        private void cmbItemType_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            switch (this.cmbItemType.Text)
+            {
+                case "Items":
+                    this.cmbItemName.ItemsSource = app.Global.Items;
+                    cmbItemName.SelectedIndex = 0;
+                    break;
+                case "Weapons":
+                    this.cmbItemName.ItemsSource = app.Global.Weapons.Keys;
+                    cmbItemName.SelectedIndex = 0;
+                    break;
+                case "Armor":
+                    this.cmbItemName.ItemsSource = app.Global.Armor.Keys;
+                    cmbItemName.SelectedIndex = 0;
+                    break;
+                default:
+                    break;
             }
         }
     }

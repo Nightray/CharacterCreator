@@ -14,12 +14,12 @@ namespace CharacterCreator
     /// </summary>
     public partial class App : Application
     {
-        public Globals Global;
+        public Global Global;
         public App()
         {
             this.InitializeComponent();
 
-            Global = new Globals();
+            Global = new Global();
             Global.ListOfCharacters = new ObservableCollection<Character>();
         }
     }

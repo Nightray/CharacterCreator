@@ -28,7 +28,6 @@ namespace CharacterCreator
 
         public CharacterList()
         {
-            
             ListOfCharacters = app.Global.ListOfCharacters; // The list of characters exists in the global scope.
             InitializeComponent();
             DataContext = this;
@@ -119,6 +118,7 @@ namespace CharacterCreator
             this.cmbSex.SelectedIndex = 0;
             this.cmbRaces.SelectedIndex = 0;
             this.cmbProfessions.SelectedIndex = 0;
+            this.slLevel.Value = 1;
         }
 
         public void UtilizeState(object state)
