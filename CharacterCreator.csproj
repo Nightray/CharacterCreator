@@ -57,7 +57,7 @@
     </ApplicationDefinition>
     <Compile Include="Classes\Armor.cs" />
     <Compile Include="Classes\Item.cs" />
-    <Compile Include="Classes\Items.cs" />
+    <Compile Include="Classes\Equipment.cs" />
     <Compile Include="Classes\Weapon.cs" />
     <Compile Include="Interfaces\IViewableCharacter.cs" />
     <Compile Include="Views\Inventory.xaml.cs">

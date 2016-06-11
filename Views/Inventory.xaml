@@ -21,13 +21,13 @@
                 <GridView>
                     <GridViewColumn Header="Name"
                                     Width="200"
-                                    DisplayMemberBinding="{Binding ItemName}" />
+                                    DisplayMemberBinding="{Binding Name}" />
                     <GridViewColumn Header="Item Type"
                                     Width="200"
-                                    DisplayMemberBinding="{Binding ItemType}" />
+                                    DisplayMemberBinding="{Binding Type}" />
                     <GridViewColumn Header="Quanity"
                                     Width="75"
-                                    DisplayMemberBinding="{Binding ItemQuanity}" />
+                                    DisplayMemberBinding="{Binding Quanity}" />
                     <GridViewColumn Width="100">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
@@ -81,7 +81,7 @@
             <StackPanel>
                 <Button x:Name="btnAddItem"
                         Content="Add Item"
-                        Margin="0, 50, 0, 0"
+                        Margin="0, 50, 0, 0" Click="btnAddItem_Click"
                          />
             </StackPanel>
             <StackPanel>

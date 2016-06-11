@@ -32,15 +32,11 @@ namespace CharacterCreator
             InitializeComponent();
             DataContext = this;
 
-            this.cmbSex.ItemsSource = Enum.GetValues(typeof(Enums.CharacterSex)).Cast<Enums.CharacterSex>();
-            this.cmbRaces.ItemsSource = Enum.GetValues(typeof(Enums.Races)).Cast<Enums.Races>();
-            this.cmbProfessions.ItemsSource = Enum.GetValues(typeof(Enums.Professions)).Cast<Enums.Professions>();
-
             // For whatever reason the xaml binding doesn't work
             // with global scope character list.
             this.lvCharacters.ItemsSource = ListOfCharacters;
 
-            ClearForm();
+            PrepareForm();
         }
 
         #region Buttons
@@ -62,7 +58,7 @@ namespace CharacterCreator
             {
                 Character character = new Character(name, level, sex, race, profession);
                 ListOfCharacters.Add(character);
-                ClearForm();
+                PrepareForm();
             }
         }
 
@@ -110,10 +106,14 @@ namespace CharacterCreator
         #endregion
 
         /// <summary>
-        /// Clears the form and brings back the default values.
+        /// Prepares the form by setting up the default values.
         /// </summary>
-        private void ClearForm()
+        private void PrepareForm()
         {
+            this.cmbSex.ItemsSource = Enum.GetValues(typeof(Enums.CharacterSex)).Cast<Enums.CharacterSex>();
+            this.cmbRaces.ItemsSource = Enum.GetValues(typeof(Enums.Races)).Cast<Enums.Races>();
+            this.cmbProfessions.ItemsSource = Enum.GetValues(typeof(Enums.Professions)).Cast<Enums.Professions>();
+
             this.txtCharacterName.Clear();
             this.cmbSex.SelectedIndex = 0;
             this.cmbRaces.SelectedIndex = 0;

@@ -6,11 +6,13 @@ using System.Threading.Tasks;
 
 namespace CharacterCreator.Classes
 {
-    public class Items
+    public class Equipment
     {
         public string Type { get; set; }
-        public int Quanity { get; set; }
+        public double Quanity { get; set; }
 
+        public Equipment() { }
+        public Equipment(string type) { this.Type = type; }
         protected virtual void WhoAmI()
         {
             //I am empty for a reason

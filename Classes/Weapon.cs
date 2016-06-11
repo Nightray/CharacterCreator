@@ -7,7 +7,7 @@ using System.Windows;
 
 namespace CharacterCreator.Classes
 {
-    class Weapon: Items
+    class Weapon: Equipment
     {
         App app = Application.Current as App;
 
@@ -16,7 +16,7 @@ namespace CharacterCreator.Classes
 
         public Weapon() { }
 
-        public Weapon(string name, string type, int quanity)
+        public Weapon(string name, string type, double quanity)
         {
             this.Name = name;
             this.Type = type;

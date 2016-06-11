@@ -26,8 +26,8 @@ namespace CharacterCreator.Views
         App app = Application.Current as App;
         ObservableCollection<Character> ListOfCharacters;
 
-        ObservableCollection<Classes.Items> ListOfItems;
-        public ObservableCollection<Classes.Items> TempListOfItems { get; set; }
+        ObservableCollection<Classes.Equipment> ListOfItems;
+        public ObservableCollection<Classes.Equipment> TempListOfItems { get; set; }
 
         private Character CurrentCharacter { get; set; }
 
@@ -35,18 +35,20 @@ namespace CharacterCreator.Views
         {
             ListOfCharacters = app.Global.ListOfCharacters;
             InitializeComponent();
+            DataContext = this;
 
             ViewableCharacter(indexNumber);
 
             this.cmbItemType.ItemsSource = app.Global.ItemTypes;
             this.cmbItemType.SelectedIndex = 0;
 
+            this.TempListOfItems = new ObservableCollection<Classes.Equipment>();
             this.ListOfItems = CurrentCharacter.ListOfItems;
-            this.TempListOfItems = ListOfItems;
+            //this.TempListOfItems = ListOfItems;
             this.lvItems.ItemsSource = TempListOfItems;
 
             DisplayGreeting();
-            ClearForm();
+            PrepareForm();
         }
 
         private void btnCancel_Click(object sender, RoutedEventArgs e)
@@ -86,9 +88,9 @@ namespace CharacterCreator.Views
         }
         
         /// <summary>
-        /// Clears the form and brings back the default values.
+        /// Prepares the form by setting up the default values.
         /// </summary>
-        private void ClearForm()
+        private void PrepareForm()
         {
             this.cmbItemName.ItemsSource = app.Global.Items;
 
@@ -99,7 +101,7 @@ namespace CharacterCreator.Views
 
         private void cmbItemType_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            switch (this.cmbItemType.Text)
+            switch (e.AddedItems[0] as string)
             {
                 case "Items":
                     this.cmbItemName.ItemsSource = app.Global.Items;
@@ -112,6 +114,31 @@ namespace CharacterCreator.Views
                 case "Armor":
                     this.cmbItemName.ItemsSource = app.Global.Armor.Keys;
                     cmbItemName.SelectedIndex = 0;
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        private void btnAddItem_Click(object sender, RoutedEventArgs e)
+        {
+            string name = this.cmbItemName.Text;
+            string type = this.cmbItemType.Text;
+            double quanity = this.slItemQuanity.Value;
+
+            switch (type)
+            {
+                case "Items":
+                    Classes.Item item = new Classes.Item(name, type, quanity);
+                    this.TempListOfItems.Add(item);
+                    break;
+                case "Weapons":
+                    Classes.Weapon weapon = new Classes.Weapon(name, type, quanity);
+                    this.TempListOfItems.Add(weapon);
+                    break;
+                case "Armor":
+                    Classes.Armor armor = new Classes.Armor(name, type, quanity);
+                    this.TempListOfItems.Add(armor);
                     break;
                 default:
                     break;

@@ -15,7 +15,7 @@ namespace CharacterCreator
         public char SexFirstLetter { get; set; }
         public Enums.Races Race { get; set; }
         public Enums.Professions Profession { get; set; }
-        public ObservableCollection<Classes.Items> ListOfItems { get; set; }
+        public ObservableCollection<Classes.Equipment> ListOfItems { get; set; }
 
         public Character() { }
 

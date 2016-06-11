@@ -7,13 +7,13 @@ using System.Windows;
 
 namespace CharacterCreator.Classes
 {
-    class Item: Items
+    class Item: Equipment
     {
         public string Name { get; set; }
 
         public Item() { }
 
-        public Item(string name, string type, int quanity)
+        public Item(string name, string type, double quanity)
         {
             this.Name = name;
             this.Type = type;
