@@ -42,7 +42,7 @@
                                             Padding="8,0"
                                             Click="btnInventory_Click"
                                             HorizontalAlignment="Center"
-                                            Margin="0 0 15 0"/>
+                                            Margin="0 0 15 0" />
                                     <Button Content="Delete"
                                             Padding="8,0"
                                             Click="btnRemove_Click"
@@ -57,7 +57,7 @@
         <!-- START Right Column -->
         <StackPanel Grid.Column="1" Margin="0, 5, 5, 5">
             <!-- ListView on the left adds margin from the left -->
-            <StackPanel Margin="0, 0, 0, 15">
+            <StackPanel Margin="0, 0, 0, 5">
                 <Label Content="Character Name:" FontSize="16" />
                 <TextBox x:Name="txtCharacterName" FontSize="14" LostFocus="txtCharacterName_LostFocus" GotFocus="txtCharacterName_GotFocus" />
                 <Label x:Name="lbEmptyCharacterName"
@@ -65,7 +65,7 @@
                        FontSize="10"
                        FontStyle="Italic"
                        Foreground="Red"
-                       Visibility="Collapsed" />
+                       Visibility="Hidden" />
             </StackPanel>
             <StackPanel Margin="0, 0, 0, 5">
                 <StackPanel Orientation="Horizontal">
@@ -105,6 +105,14 @@
                         Content="Add"
                         Margin="0, 50, 0, 0"
                         Click="btnAdd_Click" />
+                <Button x:Name="btnSave"
+                        Content="Save"
+                        Margin="0, 50, 0, 0"
+                        Click="btnSave_Click" />
+                <Button x:Name="btnLoad"
+                        Content="Load"
+                        Margin="0, 5, 0, 0"
+                        Click="btnLoad_Click" />
             </StackPanel>
         </StackPanel>
 

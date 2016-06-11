@@ -1,17 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 
 namespace CharacterCreator.Classes
 {
     class Weapon: Equipment
     {
+        // An access point to Global.cs
         App app = Application.Current as App;
 
-        public string Name { get; set; }
         public int Damage { get; set; }
 
         public Weapon() { }
@@ -22,13 +17,11 @@ namespace CharacterCreator.Classes
             this.Type = type;
             this.Quanity = quanity;
             this.Damage = app.Global.Weapons[name];
-
         }
 
-        protected override void WhoAmI()
+        public override string ItemDetails()
         {
-            MessageBox.Show(("Name: " + this.Name + "Type: " + this.Type + "Quanity: " + this.Quanity + "Damage: " + this.Damage));
-            base.WhoAmI();
+            return "Damage: " + this.Damage;
         }
     }
 }

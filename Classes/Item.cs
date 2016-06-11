@@ -1,16 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-
-namespace CharacterCreator.Classes
+﻿namespace CharacterCreator.Classes
 {
     class Item: Equipment
     {
-        public string Name { get; set; }
-
         public Item() { }
 
         public Item(string name, string type, int quanity)
@@ -20,10 +11,9 @@ namespace CharacterCreator.Classes
             this.Quanity = quanity;
         }
 
-        protected override void WhoAmI()
+        public override string ItemDetails()
         {
-            MessageBox.Show(("Name: " + this.Name + "Type: " + this.Type + "Quanity: " + this.Quanity));
-            base.WhoAmI();
+            return "This is just a regular item. Nothig special about it. I am serious. Go away.";
         }
     }
 }

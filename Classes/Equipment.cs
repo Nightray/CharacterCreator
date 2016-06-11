@@ -1,21 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace CharacterCreator.Classes
+﻿namespace CharacterCreator.Classes
 {
     public class Equipment
     {
         public string Type { get; set; }
         public int Quanity { get; set; }
+        public string Name { get; set; }
 
         public Equipment() { }
         public Equipment(string type) { this.Type = type; }
-        protected virtual void WhoAmI()
+
+        public virtual string ItemDetails()
         {
-            //I am empty for a reason
+            return "I don't how you were able to view this.. um.. congrats, I guess. Now go away.";
         }
     }
 }

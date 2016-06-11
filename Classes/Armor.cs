@@ -1,17 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 
 namespace CharacterCreator.Classes
 {
     class Armor: Equipment
     {
+        // An access point to Global.cs
         App app = Application.Current as App;
 
-        public string Name { get; set; }
         public int HealthPoints { get; set; }
 
         public Armor() { }
@@ -24,10 +19,9 @@ namespace CharacterCreator.Classes
             this.HealthPoints = app.Global.Armor[name];
         }
 
-        protected override void WhoAmI()
+        public override string ItemDetails()
         {
-            MessageBox.Show(("Name: " + this.Name + "Type: " + this.Type + "Quanity: " + this.Quanity + "Health Points: " + this.HealthPoints));
-            base.WhoAmI();
+            return "Health Points: " + this.HealthPoints;
         }
     }
 }

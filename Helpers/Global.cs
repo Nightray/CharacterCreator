@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CharacterCreator
 {
@@ -11,6 +7,7 @@ namespace CharacterCreator
     {
         public ObservableCollection<Character> ListOfCharacters { get; set; }
 
+        #region All the stuff used by Invenotry.cs such as: Item Types, Items, Weapons, and Armor
         public List<string> ItemTypes = new List<string> { "Items", "Weapons", "Armor" };
         public List<string> Items = new List<string> { "Arrow", "Bolt", "Potion",
             "Book", "Antidote", "Meat", "Water", "Bag" };
@@ -30,7 +27,6 @@ namespace CharacterCreator
             { "Plate Armor", 150 },
             { "Robe", 50 },
         };
-
-        
+        #endregion
     }
 }

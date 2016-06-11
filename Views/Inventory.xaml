@@ -28,13 +28,20 @@
                     <GridViewColumn Header="Quanity"
                                     Width="75"
                                     DisplayMemberBinding="{Binding Quanity}" />
-                    <GridViewColumn Width="100">
+                    <GridViewColumn Width="200">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <Button Content="Delete"
-                                        Padding="8,0"
-                                        Click="btnRemove_Click"
-                                        HorizontalAlignment="Center" />
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                    <Button Content="Details"
+                                            Padding="8,0"
+                                            Click="btnItemDetails_Click"
+                                            HorizontalAlignment="Center" />
+                                    <Button Content="Delete"
+                                            Padding="8,0"
+                                            Click="btnRemove_Click"
+                                            HorizontalAlignment="Center"
+                                            Margin="0 0 15 0" />
+                                </StackPanel>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>

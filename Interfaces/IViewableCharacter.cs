@@ -1,18 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace CharacterCreator.Interfaces
+﻿namespace CharacterCreator.Interfaces
 {
-    interface IViewableCharacter
+    public interface IViewableCharacter
     {
         /// <summary>
-        /// Takes CharacterIndex and checks if the character exists in the global list.
+        /// Takes CharacterIndex and checks if the character exists in the CharacterList.
         /// </summary>
-        /// <param name="CharacterIndex"></param>
-        /// <returns></returns>
         void ViewableCharacter(int characterIndex);
     }
 }

@@ -1,19 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using CharacterCreator.Views;
+using System.IO;
+using System.Xml.Serialization;
 
 namespace CharacterCreator
 {
@@ -22,13 +15,13 @@ namespace CharacterCreator
     /// </summary>
     public partial class CharacterList : UserControl, ISwitchable
     {
-        // Access point to the ListOfCharacters object in the global scope. 
+        // Access point to the ListOfCharacters in the global scope. 
         App app = Application.Current as App;
         ObservableCollection<Character> ListOfCharacters;
 
         public CharacterList()
         {
-            ListOfCharacters = app.Global.ListOfCharacters; // The list of characters exists in the global scope.
+            this.ListOfCharacters = app.Global.ListOfCharacters;
             InitializeComponent();
             DataContext = this;
 
@@ -42,7 +35,7 @@ namespace CharacterCreator
         #region Buttons
         /// <summary>
         /// Takes values form the form, perfoms all necesary checks,
-        /// if validation pases, adds the character and clears the form 
+        /// if validation pases, adds the character to the list and clears the form 
         /// </summary>
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
@@ -57,7 +50,7 @@ namespace CharacterCreator
             else
             {
                 Character character = new Character(name, level, sex, race, profession);
-                ListOfCharacters.Add(character);
+                this.ListOfCharacters.Add(character);
                 PrepareForm();
             }
         }
@@ -67,9 +60,12 @@ namespace CharacterCreator
             var item = (sender as FrameworkElement).DataContext;
             int index = lvCharacters.Items.IndexOf(item);
 
-            ListOfCharacters.RemoveAt(index);
+            this.ListOfCharacters.RemoveAt(index);
         }
 
+        /// <summary>
+        /// Switches the page to Inventory
+        /// </summary>
         private void btnInventory_Click(object sender, RoutedEventArgs e)
         {
             var item = (sender as FrameworkElement).DataContext;
@@ -78,9 +74,46 @@ namespace CharacterCreator
             Switcher.Switch(new Inventory(index));
         }
 
+        private void btnSave_Click(object sender, RoutedEventArgs e)
+        {
+            if (!ListOfCharacters.Any())
+            {
+                MessageBox.Show("Your character list is empty.", "Error!");
+            }
+            else
+            { 
+                Microsoft.Win32.SaveFileDialog dlg = new Microsoft.Win32.SaveFileDialog();
+                dlg.FileName = "CharacterCreator - " + DateTime.Now.ToString("ddMMyyhhmmss");
+                dlg.DefaultExt = ".xml";
+                dlg.Filter = "XML Documents (.xml)|*.xml";
+
+                Nullable<bool> result = dlg.ShowDialog();
+
+                if (result == true)
+                {
+                    string filePath = dlg.FileName;
+                    ListToXmlFile(filePath);
+                }
+            }
+        }
+
+        private void ListToXmlFile(string filePath)
+        {
+            using (var sw = new StreamWriter(filePath))
+            {
+                var serializer = new XmlSerializer(typeof(ObservableCollection<Character>));
+                serializer.Serialize(sw, ListOfCharacters);
+            }
+        }
+
+        private void btnLoad_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
         #endregion
 
         #region txtCharacterName functions
+
         private void txtCharacterName_GotFocus(object sender, RoutedEventArgs e)
         {
             txtCharacterNameIsNotEmpty();
@@ -101,7 +134,7 @@ namespace CharacterCreator
         private void txtCharacterNameIsNotEmpty()
         {
             this.txtCharacterName.ClearValue(Border.BorderBrushProperty);
-            this.lbEmptyCharacterName.Visibility = Visibility.Collapsed;
+            this.lbEmptyCharacterName.Visibility = Visibility.Hidden;
         }
         #endregion
 
@@ -125,5 +158,6 @@ namespace CharacterCreator
         {
             throw new NotImplementedException();
         }
+
     }
 }
