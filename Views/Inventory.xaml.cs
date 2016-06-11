@@ -26,8 +26,8 @@ namespace CharacterCreator.Views
         App app = Application.Current as App;
         ObservableCollection<Character> ListOfCharacters;
 
-        ObservableCollection<Classes.Equipment> ListOfItems;
-        public ObservableCollection<Classes.Equipment> TempListOfItems { get; set; }
+        //ObservableCollection<Classes.Equipment> ListOfItems;
+        public ObservableCollection<Classes.Equipment> ListOfItems { get; set; }
 
         private Character CurrentCharacter { get; set; }
 
@@ -39,21 +39,12 @@ namespace CharacterCreator.Views
 
             ViewableCharacter(indexNumber);
 
-            this.cmbItemType.ItemsSource = app.Global.ItemTypes;
-            this.cmbItemType.SelectedIndex = 0;
+            this.ListOfItems = new ObservableCollection<Classes.Equipment>(CurrentCharacter.ListOfItems);
 
-            this.TempListOfItems = new ObservableCollection<Classes.Equipment>();
-            this.ListOfItems = CurrentCharacter.ListOfItems;
-            this.TempListOfItems = ListOfItems;
-            this.lvItems.ItemsSource = TempListOfItems;
+            this.lvItems.ItemsSource = ListOfItems;
 
             DisplayGreeting();
             PrepareForm();
-        }
-
-        private void btnCancel_Click(object sender, RoutedEventArgs e)
-        {
-            Switcher.Switch(new CharacterList());
         }
 
         private void DisplayGreeting()
@@ -92,10 +83,12 @@ namespace CharacterCreator.Views
         /// </summary>
         private void PrepareForm()
         {
-            this.cmbItemName.ItemsSource = app.Global.Items;
-
+            this.cmbItemType.ItemsSource = app.Global.ItemTypes;
             this.cmbItemType.SelectedIndex = 0;
+
+            this.cmbItemName.ItemsSource = app.Global.Items;
             this.cmbItemName.SelectedIndex = 0;
+
             this.slItemQuanity.Value = 1;
         }
 
@@ -130,15 +123,15 @@ namespace CharacterCreator.Views
             {
                 case "Items":
                     Classes.Item item = new Classes.Item(name, type, quanity);
-                    this.TempListOfItems.Add(item);
+                    this.ListOfItems.Add(item);
                     break;
                 case "Weapons":
                     Classes.Weapon weapon = new Classes.Weapon(name, type, quanity);
-                    this.TempListOfItems.Add(weapon);
+                    this.ListOfItems.Add(weapon);
                     break;
                 case "Armor":
                     Classes.Armor armor = new Classes.Armor(name, type, quanity);
-                    this.TempListOfItems.Add(armor);
+                    this.ListOfItems.Add(armor);
                     break;
                 default:
                     break;
@@ -151,13 +144,19 @@ namespace CharacterCreator.Views
             var item = (sender as FrameworkElement).DataContext;
             int index = lvItems.Items.IndexOf(item);
 
-            TempListOfItems.RemoveAt(index);
+            ListOfItems.RemoveAt(index);
         }
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
-            this.ListOfItems = TempListOfItems;
-            TempListOfItems.Clear();
+            CurrentCharacter.ListOfItems = ListOfItems;
+            ListOfItems.Clear();
+            Switcher.Switch(new CharacterList());
+        }
+
+        private void btnCancel_Click(object sender, RoutedEventArgs e)
+        {
+            ListOfItems.Clear();
             Switcher.Switch(new CharacterList());
         }
     }
