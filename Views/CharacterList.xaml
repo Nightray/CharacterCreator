@@ -61,7 +61,7 @@
                 <Label Content="Character Name:" FontSize="16" />
                 <TextBox x:Name="txtCharacterName" FontSize="14" LostFocus="txtCharacterName_LostFocus" GotFocus="txtCharacterName_GotFocus" />
                 <Label x:Name="lbEmptyCharacterName"
-                       Content="Field cannot be empty!"
+                       Content="This field cannot be empty!"
                        FontSize="10"
                        FontStyle="Italic"
                        Foreground="Red"

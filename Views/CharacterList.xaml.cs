@@ -45,8 +45,8 @@ namespace CharacterCreator
             Enums.Races race = (Enums.Races)Enum.Parse(typeof(Enums.Races), this.cmbRaces.Text);
             Enums.Professions profession = (Enums.Professions)Enum.Parse(typeof(Enums.Professions), this.cmbProfessions.Text);
 
-            if (String.IsNullOrEmpty(name))
-                txtCharacterNameIsEmpty();
+            if (String.IsNullOrEmpty(name) || String.IsNullOrWhiteSpace(name))
+                txtCharacterNameIsEmptyOrWhiteSpace();
             else
             {
                 Character character = new Character(name, level, sex, race, profession);
@@ -147,22 +147,22 @@ namespace CharacterCreator
 
         private void txtCharacterName_GotFocus(object sender, RoutedEventArgs e)
         {
-            txtCharacterNameIsNotEmpty();
+            txtCharacterNameIsNotEmptyOrWhiteSpace();
         }
 
         private void txtCharacterName_LostFocus(object sender, RoutedEventArgs e)
         {
-            if (String.IsNullOrEmpty(this.txtCharacterName.Text))
-                txtCharacterNameIsEmpty();
+            if (String.IsNullOrEmpty(this.txtCharacterName.Text) || String.IsNullOrWhiteSpace(this.txtCharacterName.Text))
+                txtCharacterNameIsEmptyOrWhiteSpace();
         }
 
-        private void txtCharacterNameIsEmpty()
+        private void txtCharacterNameIsEmptyOrWhiteSpace()
         {
             this.txtCharacterName.BorderBrush = Brushes.Red;
             this.lbEmptyCharacterName.Visibility = Visibility.Visible;
         }
 
-        private void txtCharacterNameIsNotEmpty()
+        private void txtCharacterNameIsNotEmptyOrWhiteSpace()
         {
             this.txtCharacterName.ClearValue(Border.BorderBrushProperty);
             this.lbEmptyCharacterName.Visibility = Visibility.Hidden;
