@@ -19,6 +19,8 @@ namespace CharacterCreator
         App app = Application.Current as App;
         ObservableCollection<Character> ListOfCharacters;
 
+        private int selectedCharactrerIndex;
+
         public CharacterList()
         {
             this.ListOfCharacters = app.Global.ListOfCharacters;
@@ -55,12 +57,80 @@ namespace CharacterCreator
             }
         }
 
-        private void btnRemove_Click(object sender, RoutedEventArgs e)
+        private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
             var item = (sender as FrameworkElement).DataContext;
             int index = lvCharacters.Items.IndexOf(item);
 
             this.ListOfCharacters.RemoveAt(index);
+
+            // Checks if user is in the Character Edit mode, and resets the UI.
+            if (this.spStandardButtons.Visibility == Visibility.Collapsed)
+            {
+                this.spStandardButtons.Visibility = Visibility.Visible;
+                this.spEditButtons.Visibility = Visibility.Collapsed;
+
+                this.selectedCharactrerIndex = -1;
+                PrepareForm();
+            }
+        }
+
+        private void btnEditCharacter_Click(object sender, RoutedEventArgs e)
+        {
+
+            var item = (sender as FrameworkElement).DataContext;
+            int index = lvCharacters.Items.IndexOf(item);
+
+            if (index == -1)
+            {
+                MessageBox.Show("You must select a character Fist!");
+            }
+            else
+            {
+                // Clearing the Form and removing wornings if present.
+                PrepareForm();
+                txtCharacterNameIsNotEmptyOrWhiteSpace();
+
+                this.spStandardButtons.Visibility = Visibility.Collapsed;
+                this.spEditButtons.Visibility = Visibility.Visible;
+
+                this.selectedCharactrerIndex = index;
+
+                this.txtCharacterName.Text = this.ListOfCharacters[index].Name;
+                this.slLevel.Value = this.ListOfCharacters[index].Level;
+                this.cmbSex.SelectedValue = this.ListOfCharacters[index].Sex;
+                this.cmbRaces.SelectedValue = this.ListOfCharacters[index].Race;
+                this.cmbProfessions.SelectedValue = this.ListOfCharacters[index].Profession;
+            }
+
+
+
+        }
+
+        private void btnSaveChanges_Click(object sender, RoutedEventArgs e)
+        {
+            this.spStandardButtons.Visibility = Visibility.Visible;
+            this.spEditButtons.Visibility = Visibility.Collapsed;
+
+            int index = this.selectedCharactrerIndex;
+
+            this.ListOfCharacters[index].Name = this.txtCharacterName.Text;
+            this.ListOfCharacters[index].Level = (int)this.slLevel.Value;
+            this.ListOfCharacters[index].Sex = (Enums.CharacterSex)Enum.Parse(typeof(Enums.CharacterSex), this.cmbSex.Text);
+            this.ListOfCharacters[index].Race = (Enums.Races)Enum.Parse(typeof(Enums.Races), this.cmbRaces.Text);
+            this.ListOfCharacters[index].Profession = (Enums.Professions)Enum.Parse(typeof(Enums.Professions), this.cmbProfessions.Text);
+
+            this.selectedCharactrerIndex = -1;
+
+            PrepareForm();
+        }
+
+        private void btnCancelChanges_Click(object sender, RoutedEventArgs e)
+        {
+            this.spStandardButtons.Visibility = Visibility.Visible;
+            this.spEditButtons.Visibility = Visibility.Collapsed;
+
+            PrepareForm();
         }
 
         /// <summary>

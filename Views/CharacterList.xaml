@@ -41,11 +41,15 @@
                                     <Button Content="Inventory"
                                             Padding="8,0"
                                             Click="btnInventory_Click"
+                                            HorizontalAlignment="Center" />
+                                    <Button Content="Edit"
+                                            Padding="8,0"
+                                            Click="btnEditCharacter_Click"
                                             HorizontalAlignment="Center"
-                                            Margin="0 0 5 0" />
+                                            Margin="5 0 5 0" />
                                     <Button Content="Delete"
                                             Padding="8,0"
-                                            Click="btnRemove_Click"
+                                            Click="btnDelete_Click"
                                             HorizontalAlignment="Center" />
                                 </StackPanel>
                             </DataTemplate>
@@ -100,7 +104,7 @@
                 <Label Content="Profession:" FontSize="16" />
                 <ComboBox x:Name="cmbProfessions" />
             </StackPanel>
-            <StackPanel>
+            <StackPanel x:Name="spStandardButtons">
                 <Button x:Name="btnAdd"
                         Content="Add"
                         Margin="0, 50, 0, 0"
@@ -113,6 +117,16 @@
                         Content="Load"
                         Margin="0, 5, 0, 0"
                         Click="btnLoad_Click" />
+            </StackPanel>
+            <StackPanel x:Name="spEditButtons" Visibility="Collapsed">
+                <Button x:Name="btnSaveChanges"
+                        Content="Save Changes"
+                        Margin="0, 50, 0, 0"
+                        Click="btnSaveChanges_Click" />
+                <Button x:Name="btnCancelChanges"
+                        Content="Cancel Changes"
+                        Margin="0, 5, 0, 0"
+                        Click="btnCancelChanges_Click" />
             </StackPanel>
         </StackPanel>
 
