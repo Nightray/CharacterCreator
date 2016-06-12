@@ -38,16 +38,19 @@
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                    <Button Content="Inventory"
+                                    <Button x:Name="btnInventory"
+                                            Content="Inventory"
                                             Padding="8,0"
                                             Click="btnInventory_Click"
                                             HorizontalAlignment="Center" />
-                                    <Button Content="Edit"
+                                    <Button x:Name="btnEditCharacter"
+                                            Content="Edit"
                                             Padding="8,0"
                                             Click="btnEditCharacter_Click"
                                             HorizontalAlignment="Center"
                                             Margin="5 0 5 0" />
-                                    <Button Content="Delete"
+                                    <Button x:Name="btnDeleteCharacter"
+                                            Content="Delete"
                                             Padding="8,0"
                                             Click="btnDelete_Click"
                                             HorizontalAlignment="Center" />

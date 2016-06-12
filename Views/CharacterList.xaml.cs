@@ -20,6 +20,7 @@ namespace CharacterCreator
         ObservableCollection<Character> ListOfCharacters;
 
         private int selectedCharactrerIndex;
+        bool EditMode = false;
 
         public CharacterList()
         {
@@ -65,11 +66,12 @@ namespace CharacterCreator
             this.ListOfCharacters.RemoveAt(index);
 
             // Checks if user is in the Character Edit mode, and resets the UI.
-            if (this.spStandardButtons.Visibility == Visibility.Collapsed)
+            if (this.EditMode)
             {
                 this.spStandardButtons.Visibility = Visibility.Visible;
                 this.spEditButtons.Visibility = Visibility.Collapsed;
 
+                this.EditMode = false;
                 this.selectedCharactrerIndex = -1;
                 PrepareForm();
             }
@@ -83,17 +85,23 @@ namespace CharacterCreator
 
             if (index == -1)
             {
-                MessageBox.Show("You must select a character Fist!");
+                MessageBox.Show("You must select a character Fist!", "Error!");
+            }
+            else if (this.EditMode)
+            {
+                MessageBox.Show("You are already in the Edit Mode", "Error!");
             }
             else
             {
+                this.EditMode = true;
+
                 // Clearing the Form and removing wornings if present.
                 PrepareForm();
                 txtCharacterNameIsNotEmptyOrWhiteSpace();
 
                 this.spStandardButtons.Visibility = Visibility.Collapsed;
                 this.spEditButtons.Visibility = Visibility.Visible;
-
+                
                 this.selectedCharactrerIndex = index;
 
                 this.txtCharacterName.Text = this.ListOfCharacters[index].Name;
@@ -120,15 +128,17 @@ namespace CharacterCreator
             this.ListOfCharacters[index].Race = (Enums.Races)Enum.Parse(typeof(Enums.Races), this.cmbRaces.Text);
             this.ListOfCharacters[index].Profession = (Enums.Professions)Enum.Parse(typeof(Enums.Professions), this.cmbProfessions.Text);
 
-            this.selectedCharactrerIndex = -1;
+            this.EditMode = false;
+            Switcher.Switch(new CharacterList());
 
-            PrepareForm();
         }
 
         private void btnCancelChanges_Click(object sender, RoutedEventArgs e)
         {
             this.spStandardButtons.Visibility = Visibility.Visible;
             this.spEditButtons.Visibility = Visibility.Collapsed;
+
+            this.EditMode = false;
 
             PrepareForm();
         }
@@ -138,10 +148,17 @@ namespace CharacterCreator
         /// </summary>
         private void btnInventory_Click(object sender, RoutedEventArgs e)
         {
-            var item = (sender as FrameworkElement).DataContext;
-            int index = lvCharacters.Items.IndexOf(item);
+            if (!this.EditMode)
+            {
+                var item = (sender as FrameworkElement).DataContext;
+                int index = lvCharacters.Items.IndexOf(item);
 
-            Switcher.Switch(new Inventory(index));
+                Switcher.Switch(new Inventory(index));
+            }
+            else
+            {
+                MessageBox.Show("You are in Character Edit mode now!", "Error!");
+            }
         }
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
